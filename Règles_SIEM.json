@@ -1,0 +1,55 @@
+[
+  {
+  "rule_id": "SIEM-DET-001",
+  "title": "Détection de Scan de Ports (Nmap)",
+  "description": "Alerte si une adresse IP unique tente d'accéder à plus de 20 ports distincts en moins de 30 secondes.",
+  "severity": "Medium",
+  "logic": {
+    "condition": "count(destination_port) > 20",
+    "timeframe": "30s",
+    "group_by": "source_ip"
+  },
+  "mitre_attack": "T1595.001"
+},
+  {
+  "rule_id": "SIEM-DET-002",
+  "title": "Exploitation Injection SQL Suspectée",
+  "description": "Détecte une accumulation d'erreurs 500 sur le point d'accès /rest/user/login après des tentatives 401.",
+  "severity": "High",
+  "logic": {
+    "filters": {
+      "url_path": "/rest/user/login",
+      "http_status": [401, 500]
+    },
+    "condition": "occurrence > 10",
+    "timeframe": "1m"
+  },
+  "mitre_attack": "T1190"
+},
+  {
+  "rule_id": "SIEM-DET-003",
+  "title": "Mouvement Latéral IT vers OT",
+  "description": "Alerte sur toute tentative de connexion SSH ou VNC initiée depuis la zone Web vers la zone Industrielle.",
+  "severity": "Critical",
+  "logic": {
+    "source_zone": "VLAN_IT_WEB",
+    "destination_zone": "VLAN_OT_PLANT",
+    "destination_port": [22, 5900],
+    "action": "ANY"
+  },
+  "mitre_attack": "T1021.001"
+},
+  {
+  "rule_id": "SIEM-DET-004",
+  "title": "Activité Ransomware Potentielle",
+  "description": "Détecte la création de fichiers avec l'extension .crypt ou .locked en volume élevé.",
+  "severity": "Critical",
+  "logic": {
+    "file_event": "CREATE",
+    "file_extension": [".crypt", ".locked", ".crypted"],
+    "condition": "count(files) > 5",
+    "timeframe": "10s"
+  },
+  "mitre_attack": "T1486"
+}
+]

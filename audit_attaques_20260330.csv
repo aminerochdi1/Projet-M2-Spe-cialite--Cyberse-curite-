@@ -1,0 +1,10 @@
+Timestamp,Source_IP,Target_IP,Attack_Category,Tool_Used,Technical_Details,HTTP_Status,Outcome
+2026-03-30 01:28:44,192.168.220.131,10.192.11.131,Network Recon,Nmap,"TCP Port Scan (80, 443, 5900 open)",200,Success
+2026-03-30 01:45:12,192.168.220.131,10.192.11.131,Service Detection,Nmap,"VNC-Info: Protocol 3.8, Security Type 2",200,Success
+2026-03-30 19:38:49,192.168.220.131,127.0.0.1:3000,Web Attack,sqlmap,"POST /rest/user/login (email injection)",401,Unauthorized
+2026-03-30 19:40:26,192.168.220.131,127.0.0.1:3000,Web Attack,sqlmap,"Boolean-based blind - CASE/JSON payload",500,Internal Error
+2026-03-30 19:43:29,192.168.220.131,127.0.0.1:3000,Data Extraction,sqlmap,"Retrieved 21 tables: Users, Products, Wallets, etc.",200,Success
+2026-03-30 03:02:15,192.168.220.131,10.192.11.131,Lateral Movement,ssh,"Connection attempt to port 22",REFUSED,Blocked
+2026-03-30 03:11:22,192.168.220.131,10.192.11.131,Data Exfiltration,tcpdump,"Capture cleartext POST: ALERTE_SURETE_USINE",200,Success
+2026-03-30 03:18:32,LOCAL_ADMIN,10.192.11.131,Ransomware Simulation,GPG/tar,"Chiffrement /home/admin/PLANT_DATA -> .crypt",N/A,Impacted
+2026-03-30 03:20:56,LOCAL_ADMIN,10.192.11.131,Integrity Breach,cat,"Verification: Binary/Encrypted content only",N/A,Loss of Availability
